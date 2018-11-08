@@ -1,4 +1,10 @@
-""" ... """
+""" 
+Robert Schult
+CSIS 250
+Project 2
+Software Sensor Application
+"""
+
 from sensor import Sensor
 import json
 import time
