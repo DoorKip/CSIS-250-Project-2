@@ -23,6 +23,10 @@ class MySensor(Sensor):
         self.__url = self.__settings.get('service_url')
         print("This sensor just woke up .. ready to call " + self.__url)
 
+    def get_data(self):
+        # https://www.n2yo.com/rest/v1/satellite/above/32.910/-117.110/0/70/15/&apiKey=GY8YQR-CS22QC-ZLP9Y4-3WPU
+        pass
+
     def has_updates(self, k):
         pass
 
