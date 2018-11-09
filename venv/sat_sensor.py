@@ -24,20 +24,23 @@ class MySensor(Sensor):
             self.__key = self.__settings.get('api_key')
             self.__lat = self.__settings.get('location_lat')
             self.__lon = self.__settings.get('location_lon')
+            self.__alt = self.__settings.get('location_alt')
             self.__arc = self.__settings.get('search_arc')
             self.__cat = self.__settings.get('sat_category')
-            self.sat_responses = {}
+        self.sat_responses = {}
         print("This sensor just woke up .. ready to call " + self.__url)
 
     def __str__(self):
         return(self.get_all())
 
     def get_data(self):
-        r = requests.get(self.__url + self.__lat + '/' + self.__lon + '/0/'
+        r = requests.get(self.__url + self.__lat + '/' + self.__lon + '/' + self.__alt + '/'
                          + self.__arc + '/' + self.__cat + '/&apiKey=' + self.__key)
         if r.status_code == 200:
             result = r.json()
             return str(result)
+        else:
+            return "Resource Not Found"
 
     def has_updates(self, k):
         print("Waiting on pickle implementation")
