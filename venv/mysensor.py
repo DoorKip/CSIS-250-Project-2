@@ -24,21 +24,24 @@ class MySensor(Sensor):
         self.sat_responses = {}
         print("This sensor just woke up .. ready to call " + self.__url)
 
+    def __str__(self):
+        return(self.get_all())
+
     def get_data(self):
         r = requests.get(self.__url + '32.910/-117.110/0/70/15/&apiKey=GY8YQR-CS22QC-ZLP9Y4-3WPU')
         if r.status_code == 200:
             result = r.json
-
-
+            return result
 
     def has_updates(self, k):
-        pass
+        print("Waiting on pickle implementation")
 
     def get_content(self, k):
-        pass
+        print("Waiting on pickle implementation")
 
     def get_all(self):
-        pass
+        data = self.get_data()
+        return data
 
 
 if __name__ == "__main__":
