@@ -20,15 +20,21 @@ class MySensor(Sensor):
         """ read sensor settings from config file """
         with open(CONFIG_FILE) as json_text:
             self.__settings = json.load(json_text)
-        self.__url = self.__settings.get('service_url')
-        self.sat_responses = {}
+            self.__url = self.__settings.get('service_url')
+            self.__key = self.__settings.get('api_key')
+            self.__lat = self.__settings.get('location_lat')
+            self.__lon = self.__settings.get('location_lon')
+            self.__arc = self.__settings.get('search_arc')
+            self.__cat = self.__settings.get('sat_category')
+            self.sat_responses = {}
         print("This sensor just woke up .. ready to call " + self.__url)
 
     def __str__(self):
         return(self.get_all())
 
     def get_data(self):
-        r = requests.get(self.__url + '32.910/-117.110/0/70/15/&apiKey=GY8YQR-CS22QC-ZLP9Y4-3WPU')
+        r = requests.get(self.__url + self.__lat + '/' + self.__lon + '/0/'
+                         + self.__arc + '/' + self.__cat + '/&apiKey=' + self.__key)
         if r.status_code == 200:
             result = r.json()
             return str(result)
