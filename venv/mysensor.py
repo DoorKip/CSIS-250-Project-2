@@ -9,10 +9,10 @@ from sensor import Sensor
 import json
 import time
 import requests
+import pickle
 from datetime import datetime
 
-CONFIG_FILE = 'mysensor.json'
-
+CONFIG_FILE = 'sat_settings.json'
 
 class MySensor(Sensor):
 
@@ -21,11 +21,15 @@ class MySensor(Sensor):
         with open(CONFIG_FILE) as json_text:
             self.__settings = json.load(json_text)
         self.__url = self.__settings.get('service_url')
+        self.sat_responses = {}
         print("This sensor just woke up .. ready to call " + self.__url)
 
     def get_data(self):
-        # https://www.n2yo.com/rest/v1/satellite/above/32.910/-117.110/0/70/15/&apiKey=GY8YQR-CS22QC-ZLP9Y4-3WPU
-        pass
+        r = requests.get(self.__url + '32.910/-117.110/0/70/15/&apiKey=GY8YQR-CS22QC-ZLP9Y4-3WPU')
+        if r.status_code == 200:
+            result = r.json
+
+
 
     def has_updates(self, k):
         pass
