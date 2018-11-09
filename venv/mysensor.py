@@ -30,8 +30,8 @@ class MySensor(Sensor):
     def get_data(self):
         r = requests.get(self.__url + '32.910/-117.110/0/70/15/&apiKey=GY8YQR-CS22QC-ZLP9Y4-3WPU')
         if r.status_code == 200:
-            result = r.json
-            return result
+            result = r.json()
+            return str(result)
 
     def has_updates(self, k):
         print("Waiting on pickle implementation")
@@ -46,5 +46,4 @@ class MySensor(Sensor):
 
 if __name__ == "__main__":
     sr = MySensor()
-    print("This is me : " + str(sr))
-    print("let's go ..")
+    print("Sat Data : " + str(sr))
