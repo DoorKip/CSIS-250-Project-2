@@ -5,7 +5,7 @@ Project 2
 Software Sensor Application
 """
 
-from sensor import Sensor
+from sensor import SensorX
 import json
 import time
 import requests
@@ -14,7 +14,7 @@ from datetime import datetime
 
 CONFIG_FILE = 'sat_settings.json'
 
-class MySensor(Sensor):
+class MySensor(SensorX):
 
     def __init__(self):
         """ read sensor settings from config file """
