@@ -34,6 +34,7 @@ class MySensor(Sensor):
         return(self.get_all())
 
     def get_data(self):
+        # Runs the rest api request to get the current list of satleites overhead.
         r = requests.get(self.__url + self.__lat + '/' + self.__lon + '/' + self.__alt + '/'
                          + self.__arc + '/' + self.__cat + '/&apiKey=' + self.__key)
         if r.status_code == 200:
